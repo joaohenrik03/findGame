@@ -2,10 +2,21 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Home } from "../pages/Home";
 import { Arcade } from "../pages/Arcade";
+import { Search } from "../pages/Search";
 
 const Stack = createNativeStackNavigator();
 
 export function AppRoutes() {
+  const defaultOptions = {
+    headerTintColor: '#FFF',
+    headerTitleStyle: {
+      fontSize: 24
+    },
+    headerStyle: {
+      backgroundColor: '#050B18'
+    }
+  };
+
   return (
     <Stack.Navigator>
       <Stack.Screen 
@@ -18,15 +29,12 @@ export function AppRoutes() {
       <Stack.Screen 
         name="Arcade"
         component={Arcade}
-        options={{
-          headerTintColor: '#FFF',
-          headerTitleStyle: {
-            fontSize: 24
-          },
-          headerStyle: {
-            backgroundColor: '#050B18'
-          }
-        }}
+        options={defaultOptions}
+      />
+      <Stack.Screen 
+        name="Search"
+        component={Search}
+        options={defaultOptions}
       />
     </Stack.Navigator>
   )
