@@ -18,6 +18,15 @@ export function AppRoutes() {
       <Stack.Screen 
         name="Search"
         component={Search}
+        options={{
+          headerTintColor: '#FFF',
+          headerTitleStyle: {
+            fontSize: 24
+          },
+          headerStyle: {
+            backgroundColor: '#050B18'
+          }
+        }}
       />
     </Stack.Navigator>
   )
