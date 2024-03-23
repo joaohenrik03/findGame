@@ -11,6 +11,9 @@ export function AppRoutes() {
       <Stack.Screen 
         name="Home"
         component={Home}
+        options={{
+          headerShown: false
+        }}
       />
       <Stack.Screen 
         name="Search"
