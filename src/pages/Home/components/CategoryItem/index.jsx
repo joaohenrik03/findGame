@@ -6,7 +6,7 @@ export function CategoryItem({data}) {
 
   return (
     <CategoryItemContainer 
-      onPress={() => navigate('Search', { category: data.name })}
+      onPress={() => navigate('Arcade', { category: data.name })}
       activeOpacity={0.8}
     >
       <CategoryItemText>

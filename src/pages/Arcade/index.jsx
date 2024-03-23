@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { api, apiKey } from "../../services/api";
 import { Card } from "../../components/Card";
-import { CategoryGamesList, SearchContainer } from "./styles";
+import { CategoryGamesList, ArcadeContainer } from "./styles";
 
-export function Search() {
+export function Arcade() {
   const [categoryGames, setCategoryGames] = useState([]);
   const route = useRoute();
   const currentCategory = route.params.category.toLowerCase();
@@ -25,12 +25,12 @@ export function Search() {
   }, []);
 
   return (
-    <SearchContainer>
+    <ArcadeContainer>
       <CategoryGamesList
         data={categoryGames}
         key={(item) => item.name}
         renderItem={({item}) => <Card data={item} />}
       />
-    </SearchContainer>
+    </ArcadeContainer>
   )
 }

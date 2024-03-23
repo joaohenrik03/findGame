@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Home } from "../pages/Home";
-import { Search } from "../pages/Search";
+import { Arcade } from "../pages/Arcade";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,8 +16,8 @@ export function AppRoutes() {
         }}
       />
       <Stack.Screen 
-        name="Search"
-        component={Search}
+        name="Arcade"
+        component={Arcade}
         options={{
           headerTintColor: '#FFF',
           headerTitleStyle: {

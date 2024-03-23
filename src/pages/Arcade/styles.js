@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const SearchContainer = styled.SafeAreaView`
+export const ArcadeContainer = styled.SafeAreaView`
   flex: 1;
   background-color: #050B18;
 `;
