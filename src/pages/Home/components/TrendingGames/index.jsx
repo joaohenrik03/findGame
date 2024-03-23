@@ -1,13 +1,11 @@
-import { Header } from "./components/Header";
-import { SearchGame } from "./components/SearchGame";
-import { CategoryItem } from "./components/CategoryItem";
-import { TrendingGames } from "./components/TrendingGames";
+import { Card } from "../../../../components/Card";
 import { 
-  CategoryList,
-  HomeContainer, 
+  TrendingGamesContainer, 
+  TrendingGamesList, 
+  TrendingGamesTitle 
 } from "./styles";
 
-export function Home() {
+export function TrendingGames() {
   const tempCategorys = [{
     id: 4,
     name: "testeasdasdasdfddfgdf",
@@ -43,20 +41,17 @@ export function Home() {
   ];
 
   return (
-    <HomeContainer>
-      <Header />
+    <TrendingGamesContainer>
+      <TrendingGamesTitle>
+        Trending games
 
-      <SearchGame />
+      </TrendingGamesTitle>
 
-      <CategoryList 
+      <TrendingGamesList
         data={tempCategorys}
         keyExtractor={(item) => item.id}
-        renderItem={({item}) => <CategoryItem data={item} />}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
+        renderItem={() => <Card />}
       />
-
-      <TrendingGames />
-    </HomeContainer>
+    </TrendingGamesContainer>
   )
 }
