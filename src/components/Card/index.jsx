@@ -11,7 +11,7 @@ export function Card({data}) {
     <CardContainer>
       <Image
         source={
-          false ? { uri: data.background_image } : require('../../assets/default-bg.jpg')
+          data.background_image ? { uri: data.background_image } : require('../../assets/default-bg.jpg')
         }
       />
 
