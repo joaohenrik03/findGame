@@ -10,9 +10,9 @@ export const TrendingGamesTitle = styled.Text`
   color: #FFF;
   font-size: 18px;
   text-align: left;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 `;
 
 export const TrendingGamesList = styled.FlatList`
-  padding: 0px 12px;
+  flex: 1;
 `;
