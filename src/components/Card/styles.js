@@ -21,7 +21,7 @@ export const GameDataBox = styled.View`
 `;
 
 export const Name = styled.Text`
-  font-size: 18px;
+  font-size: 14px;
   color: #FFF;
   font-weight: bold;
   margin-bottom: 8px;

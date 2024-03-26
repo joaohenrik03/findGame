@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { 
   CardContainer, 
   GameDataBox, 
@@ -7,8 +8,10 @@ import {
 } from "./styles";
 
 export function Card({data}) {
+  const { navigate } = useNavigation();
+
   return (
-    <CardContainer>
+    <CardContainer onPress={() => navigate('Detail', { gameData: data })}>
       <Image
         source={
           data.background_image ? { uri: data.background_image } : require('../../assets/default-bg.jpg')
