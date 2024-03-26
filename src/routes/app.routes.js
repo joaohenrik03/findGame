@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "../pages/Home";
 import { Arcade } from "../pages/Arcade";
 import { Search } from "../pages/Search";
+import { Detail } from "../pages/Detail";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,13 @@ export function AppRoutes() {
         name="Search"
         component={Search}
         options={defaultOptions}
+      />
+      <Stack.Screen 
+        name="Detail"
+        component={Detail}
+        options={{
+          headerShown: false
+        }}
       />
     </Stack.Navigator>
   )
