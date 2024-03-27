@@ -1,4 +1,5 @@
 import { Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Feather from 'react-native-vector-icons/Feather';
 import { 
   HeaderContainer, 
@@ -7,6 +8,8 @@ import {
 } from "./styles";
 
 export function Header() {
+  const { navigate } = useNavigation();
+
   return (
     <HeaderContainer>
       <Title>
@@ -14,7 +17,7 @@ export function Header() {
       </Title>  
 
       <LinkSave 
-        onPress={() => console.log('Levar para a página de favoritos!')}
+        onPress={() => navigate('Favorites')}
         activeOpacity={0.7}
       >
         <Feather name="bookmark" size={20} color="#FFF" />   
