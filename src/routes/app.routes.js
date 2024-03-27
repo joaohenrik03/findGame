@@ -4,6 +4,7 @@ import { Home } from "../pages/Home";
 import { Arcade } from "../pages/Arcade";
 import { Search } from "../pages/Search";
 import { Detail } from "../pages/Detail";
+import { Favorites } from "../pages/Favorites";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,14 @@ export function AppRoutes() {
         component={Detail}
         options={{
           headerShown: false
+        }}
+      />
+       <Stack.Screen 
+        name="Favorites"
+        component={Favorites}
+        options={{
+          ...defaultOptions,
+          title: 'My Favorites'
         }}
       />
     </Stack.Navigator>
