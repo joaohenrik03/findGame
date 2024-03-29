@@ -31,3 +31,16 @@ export const Rating = styled.Text`
   font-size: 14px;
   color: #FFF;
 `;
+
+export const RemoveGameToFav = styled.TouchableOpacity`
+  height: 46px;
+  width: 46px;
+  justify-content: center;
+  align-items: center;
+  background-color: #E72F49;
+  border-radius: 99px;
+  position: absolute;
+  z-index: 9;
+  top: 8px;
+  right: 12px;
+`;

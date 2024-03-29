@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { Modal, ScrollView, Text } from "react-native";
+import { Modal, ScrollView } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { api, apiKey } from "../../services/api";
 
@@ -11,6 +11,7 @@ import { DescriptionSection } from "./components/DescriptionSection";
 import { PlatformSection } from "./components/PlatformSection";
 import { StoresSection } from "./components/StoresSection";
 import { BackButton } from "../../components/BackButton";
+import { FavoriteButton } from "./components/FavoriteButton";
 
 import { 
   DetailContainer, 
@@ -68,6 +69,7 @@ export function Detail() {
         </DetailContent>
 
         <BackButton performFunction={() => goBack()} />
+        <FavoriteButton gameData={gameData} />
       </ScrollView>
 
       <Modal 
