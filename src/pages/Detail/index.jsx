@@ -27,12 +27,21 @@ export function Detail() {
   const { goBack } = useNavigation();
   const [gameDescription, setGameDescription] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [loadingDescription, setLoadingDescription] = useState(false);
 
   useEffect(() => {
     async function getGameDescription() {
-      const response = await api.get(`/games/${gameData.id}?&key=${apiKey}`);
+      setLoadingDescription(true);
 
-      setGameDescription(response.data.description_raw);
+      try {
+        const response = await api.get(`/games/${gameData.id}?&key=${apiKey}`);
+
+        setGameDescription(response.data.description_raw);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoadingDescription(false);
+      }
     }
 
     getGameDescription();
@@ -57,7 +66,7 @@ export function Detail() {
             genres={gameData.genres} 
           />
           <DescriptionSection 
-            gameDescription={gameDescription} 
+            gameDescription={loadingDescription ? 'Carregando...' : gameDescription} 
             handleOpenModal={() => setModalIsOpen(true)} 
           />
           <PlatformSection 
@@ -83,7 +92,7 @@ export function Detail() {
           </ModalTitle>
 
           <FullDescription>
-            {gameDescription}
+            {loadingDescription ? 'Carregando...' : gameDescription}
           </FullDescription> 
 
           <BackButton performFunction={() => setModalIsOpen(false)} />

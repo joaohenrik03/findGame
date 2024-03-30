@@ -5,12 +5,21 @@ export const FavoritesContext = createContext({});
 
 export function FavoritesContextProvider({children}) {
   const [favoriteGames, setFavoriteGames] = useState([]);
+  const [favoriteLoading, setFavoriteLoading] = useState(false);
 
   useEffect(() => {
     async function getFavoritesInStorage() {
-      const response = await AsyncStorage.getItem('findGame-1.0.0');
+      setFavoriteLoading(true);
 
-      setFavoriteGames(JSON.parse(response));
+      try {
+        const response = await AsyncStorage.getItem('findGame-1.0.0');
+
+        setFavoriteGames(JSON.parse(response));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setFavoriteLoading(false);
+      }
     }
 
     getFavoritesInStorage();
@@ -51,6 +60,7 @@ export function FavoritesContextProvider({children}) {
   return (
     <FavoritesContext.Provider value={{
       favoriteGames,
+      favoriteLoading,
       handleAddGameToFav,
       handleRemoveGameToFav
     }}>

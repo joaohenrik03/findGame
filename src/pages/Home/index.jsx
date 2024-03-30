@@ -40,18 +40,18 @@ export function Home() {
       <SearchGame />
 
       {loading ? (
-          <LoadingContainer>
-            <Loading size={24} />
-          </LoadingContainer>
-        ) : (
-          <CategoryList
-            data={categories}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <CategoryItem data={item} />}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          />
-        )}
+        <LoadingContainer>
+          <Loading size={24} />
+        </LoadingContainer>
+      ) : (
+        <CategoryList
+          data={categories}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <CategoryItem data={item} />}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        />
+      )}
 
       <TrendingGames />
     </HomeContainer>
