@@ -9,3 +9,8 @@ export const CategoryList = styled.FlatList`
   max-height: 34px;
   margin: 28px 12px 24px 12px;
 `;
+
+export const LoadingContainer = styled.View`
+  max-height: 34px;
+  margin: 28px 12px 24px 12px;
+`;

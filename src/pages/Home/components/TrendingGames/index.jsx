@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api, apiKey } from "../../../../services/api";
 import { Card } from "../../../../components/Card";
+import { Loading } from "../../../../components/Loading";
 import { 
   TrendingGamesContainer, 
   TrendingGamesList, 
@@ -9,21 +10,30 @@ import {
 
 export function TrendingGames() {
   const [topRatedGames, setTopRatedGames] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function loadTrendingGames() {
-      const response = await api.get(`/games?&key=${apiKey}`, {
-        params: {
-          "ordering": "-rating",
-          "page_size": 5,
-        }
-      })
+    setLoading(true);
 
-      setTopRatedGames(response.data.results);
+    async function loadTrendingGames() {
+      try {
+        const response = await api.get(`/games?&key=${apiKey}`, {
+          params: {
+            "ordering": "-rating",
+            "page_size": 5,
+          }
+        })
+  
+        setTopRatedGames(response.data.results);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     loadTrendingGames();
-  }, [setTopRatedGames])
+  }, [setTopRatedGames]);
 
   return (
     <TrendingGamesContainer>
@@ -32,11 +42,15 @@ export function TrendingGames() {
 
       </TrendingGamesTitle>
 
-      <TrendingGamesList
-        data={topRatedGames}
-        keyExtractor={(item) => item.id}
-        renderItem={({item}) => <Card data={item} />}
-      />
+      {loading ? (
+        <Loading size={64} />
+      ) : (
+        <TrendingGamesList
+          data={topRatedGames}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => <Card data={item} />}
+        />
+      )}
     </TrendingGamesContainer>
   )
 }

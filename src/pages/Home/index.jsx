@@ -4,18 +4,30 @@ import { Header } from "./components/Header";
 import { SearchGame } from "./components/SearchGame";
 import { CategoryItem } from "./components/CategoryItem";
 import { TrendingGames } from "./components/TrendingGames";
+import { Loading } from "../../components/Loading";
 import { 
   CategoryList,
-  HomeContainer, 
+  CategoryListContainer,
+  HomeContainer,
+  LoadingContainer, 
 } from "./styles";
 
 export function Home() {
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     async function loadCategories() {
-      const response = await api.get(`/genres?key=${apiKey}`);
-      setCategories(response.data.results);
+      try {
+        const response = await api.get(`/genres?key=${apiKey}`);
+        setCategories(response.data.results);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     }
 
     loadCategories();
@@ -27,13 +39,19 @@ export function Home() {
 
       <SearchGame />
 
-      <CategoryList 
-        data={categories}
-        keyExtractor={(item) => item.id}
-        renderItem={({item}) => <CategoryItem data={item} />}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      />
+      {loading ? (
+          <LoadingContainer>
+            <Loading size={24} />
+          </LoadingContainer>
+        ) : (
+          <CategoryList
+            data={categories}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <CategoryItem data={item} />}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        )}
 
       <TrendingGames />
     </HomeContainer>
