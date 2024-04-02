@@ -41,7 +41,7 @@ export function Arcade() {
       ) : (
         <CategoryGamesList
           data={categoryGames}
-          key={(item) => item.id}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => <Card data={item} />}
         />
       )}
