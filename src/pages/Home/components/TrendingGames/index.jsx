@@ -11,6 +11,7 @@ import {
 export function TrendingGames() {
   const [topRatedGames, setTopRatedGames] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [totalPages ,setTotalPages] = useState(5);
 
   useEffect(() => {
     setLoading(true);
@@ -20,11 +21,12 @@ export function TrendingGames() {
         const response = await api.get(`/games?&key=${apiKey}`, {
           params: {
             "ordering": "-rating",
-            "page_size": 5,
+            "page_size": totalPages,
           }
         })
   
         setTopRatedGames(response.data.results);
+        setTotalPages(oldValue => oldValue + 5);
       } catch (error) {
         console.log(error);
       } finally {
@@ -34,6 +36,22 @@ export function TrendingGames() {
 
     loadTrendingGames();
   }, [setTopRatedGames]);
+
+  async function handleLoadMoreGames() {
+    try { 
+      const response = await api.get(`/games?&key=${apiKey}`, {
+        params: {
+          "ordering": "-rating",
+          "page_size": totalPages,
+        }
+      })
+
+      setTopRatedGames(response.data.results);
+        setTotalPages(oldValue => oldValue + 5);
+      } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <TrendingGamesContainer>
@@ -49,6 +67,7 @@ export function TrendingGames() {
           data={topRatedGames}
           keyExtractor={(item) => item.id}
           renderItem={({item}) => <Card data={item} />}
+          onEndReached={handleLoadMoreGames}
         />
       )}
     </TrendingGamesContainer>

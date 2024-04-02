@@ -7,7 +7,6 @@ import { TrendingGames } from "./components/TrendingGames";
 import { Loading } from "../../components/Loading";
 import { 
   CategoryList,
-  CategoryListContainer,
   HomeContainer,
   LoadingContainer, 
 } from "./styles";
